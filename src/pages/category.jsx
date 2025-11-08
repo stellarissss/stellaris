@@ -81,81 +81,81 @@ export default function Category(props) {
     return colorMap[color] || 'bg-gray-100 text-gray-800 border-gray-200';
   };
   return <div style={style} className="min-h-screen bg-gray-50">
-          <Navigation currentPage="category" onPageChange={pageId => {
+      <Navigation currentPage="category" onPageChange={pageId => {
       $w.utils.navigateTo({
         pageId,
         params: {}
       });
     }} />
-          
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            {!selectedCategory ? <>
-                {/* 页面标题 */}
-                <div className="mb-8">
-                  <h1 className="text-3xl font-bold text-gray-900 mb-2">文章分类</h1>
-                  <p className="text-gray-600">按分类浏览所有文章</p>
-                </div>
+      
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {!selectedCategory ? <>
+            {/* 页面标题 */}
+            <div className="mb-8">
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">文章分类</h1>
+              <p className="text-gray-600">按分类浏览所有文章</p>
+            </div>
 
-                {/* 分类网格 */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {categories.map(category => <div key={category.id} onClick={() => handleCategorySelect(category)} className={`bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 p-6 cursor-pointer border-2 ${getColorClasses(category.color)}`}>
-                      <div className="flex items-center justify-between mb-4">
-                        <Folder className="w-8 h-8" />
-                        <span className="text-2xl font-bold">{category.count}</span>
-                      </div>
-                      <h3 className="text-xl font-bold mb-2">{category.name}</h3>
-                      <p className="text-sm opacity-80">{category.description}</p>
-                      <div className="mt-4 flex items-center text-sm font-medium">
-                        <span>查看文章</span>
-                        <FileText className="w-4 h-4 ml-2" />
-                      </div>
-                    </div>)}
-                </div>
-
-                {/* 统计信息 */}
-                <div className="mt-12 bg-white rounded-lg shadow-sm p-6">
-                  <h2 className="text-xl font-bold text-gray-900 mb-4">博客统计</h2>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-blue-600">35</div>
-                      <div className="text-gray-600 mt-1">总文章数</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-green-600">3</div>
-                      <div className="text-gray-600 mt-1">分类数</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-purple-600">12</div>
-                      <div className="text-gray-600 mt-1">标签数</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-orange-600">1.2k</div>
-                      <div className="text-gray-600 mt-1">总访问量</div>
-                    </div>
+            {/* 分类网格 */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {categories.map(category => <div key={category.id} onClick={() => handleCategorySelect(category)} className={`bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 p-6 cursor-pointer border-2 ${getColorClasses(category.color)}`}>
+                  <div className="flex items-center justify-between mb-4">
+                    <Folder className="w-8 h-8" />
+                    <span className="text-2xl font-bold">{category.count}</span>
                   </div>
-                </div>
-              </> : <>
-                {/* 返回按钮 */}
-                <button onClick={() => setSelectedCategory(null)} className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-6">
-                  <span>← 返回分类</span>
-                </button>
+                  <h3 className="text-xl font-bold mb-2">{category.name}</h3>
+                  <p className="text-sm opacity-80">{category.description}</p>
+                  <div className="mt-4 flex items-center text-sm font-medium">
+                    <span>查看文章</span>
+                    <FileText className="w-4 h-4 ml-2" />
+                  </div>
+                </div>)}
+            </div>
 
-                {/* 分类标题 */}
-                <div className="mb-8">
-                  <h1 className="text-3xl font-bold text-gray-900 mb-2">{selectedCategory.name}</h1>
-                  <p className="text-gray-600">{selectedCategory.description}</p>
-                  <p className="text-sm text-gray-500 mt-2">共 {articles.length} 篇文章</p>
+            {/* 统计信息 */}
+            <div className="mt-12 bg-white rounded-lg shadow-sm p-6">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">博客统计</h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-blue-600">35</div>
+                  <div className="text-gray-600 mt-1">总文章数</div>
                 </div>
-
-                {/* 文章列表 */}
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1">
-                  {articles.map(article => <ArticleCard key={article.id} article={article} onRead={handleReadArticle} />)}
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-green-600">3</div>
+                  <div className="text-gray-600 mt-1">分类数</div>
                 </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-purple-600">12</div>
+                  <div className="text-gray-600 mt-1">标签数</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-orange-600">1.2k</div>
+                  <div className="text-gray-600 mt-1">总访问量</div>
+                </div>
+              </div>
+            </div>
+          </> : <>
+            {/* 返回按钮 */}
+            <button onClick={() => setSelectedCategory(null)} className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-6">
+              <span>← 返回分类</span>
+            </button>
 
-                {articles.length === 0 && <div className="text-center py-12">
-                    <p className="text-gray-500 text-lg">该分类暂无文章</p>
-                  </div>}
-              </>}
-          </div>
-        </div>;
+            {/* 分类标题 */}
+            <div className="mb-8">
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">{selectedCategory.name}</h1>
+              <p className="text-gray-600">{selectedCategory.description}</p>
+              <p className="text-sm text-gray-500 mt-2">共 {articles.length} 篇文章</p>
+            </div>
+
+            {/* 文章列表 */}
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1">
+              {articles.map(article => <ArticleCard key={article.id} article={article} onRead={handleReadArticle} />)}
+            </div>
+
+            {articles.length === 0 && <div className="text-center py-12">
+                <p className="text-gray-500 text-lg">该分类暂无文章</p>
+              </div>}
+          </>}
+      </div>
+    </div>;
 }
